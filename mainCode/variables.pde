@@ -6,6 +6,7 @@ int lettersIndex = 0; //index for random file name letters
 
 int wndMinH = 500; //minimum height of main window
 int wndMinW = 700; //minimum width of main window
+int wndPD = 5;     //padding for main window controls
 int serialInputDataInt;
 int selectedDataBits = 8; //serial port data bits 5-6-7-8 (8 is default)
 int comboBoxPortSelectedIndex = 0;
@@ -94,56 +95,56 @@ String selectedFont = fontList[0]; //selected font for textAreaMain and textFiel
 
 StringList previousEnteredCommands = new StringList(); //previous command entered in textFieldMain
 
-Color buttonConnectRed = new Color(#EC4242); //red color for disconnected button
-Color buttonConnectGreen = new Color(#3DC73D); //green color for connected button
+//Color buttonConnectRed = new Color(#EC4242); //red color for disconnected button
+//Color buttonConnectGreen = new Color(#3DC73D); //green color for connected button
 
 PImage icon; //import software icon
 
-Font labelFont = new Font("Arial", Font.PLAIN, 12); //font for labels
+//Font labelFont = new Font("Arial", Font.PLAIN, 12); //font for labels
 Font terminalFont;
-FileWriter Writer; //create object of FileWriter for data logging
+//FileWriter Writer; //create object of FileWriter for data logging
 int intBaudRate = int(selectedBaudRate); //integer value of selectedBaudRate for Serial constructor
 processing.serial.Serial COMPort = null; //create object of Serial class
 
 Table preferenceTable; //preferences table
 
 //Controls for main window
-JPanel panelMain; //main window panel
-JTextArea textAreaMain; //main window text area
-JTextField textFieldMain; //main window text field
-JTextField textFieldSearch; //main window search text field
-JScrollPane textAreaMainScrollPane; //main window text area scroll pane
-JButton buttonConnect; //main window connect button
-JButton buttonClear; //main window clear button
-JButton buttonSettings; //main window settings button
-JButton buttonLogPauseResume; //main window log pause/resume button
-Highlighter hilit;  //highlighter for textAreaMain search function
-Highlighter.HighlightPainter painter;   //painter for textAreaMain search function
+//JPanel panelMain; //main window panel
+//JTextArea textAreaMain; //main window text area
+//JTextField textFieldMain; //main window text field
+//JTextField textFieldSearch; //main window search text field
+//JScrollPane textAreaMainScrollPane; //main window text area scroll pane
+//JButton buttonConnect; //main window connect button
+//JButton buttonClear; //main window clear button
+//JButton buttonSettings; //main window settings button
+//JButton buttonLogPauseResume; //main window log pause/resume button
+//Highlighter hilit;  //highlighter for textAreaMain search function
+//Highlighter.HighlightPainter painter;   //painter for textAreaMain search function
 
-//Controls for settings window
-JFrame frameSettings; //settings window frame
-JLabel labelPortConfig; //settings window Port Configuration label
-JLabel labelPort; //settings window Port label
-JLabel labelBaudRate; //settings window Baud Rate label
-JLabel labelDataConfig; //settings window Data Configuration label
-JLabel labelLogConfig; //settings window Log Configuration label
-JLabel labelPortParity; //settings window Port Parity label
-JLabel labelPortDataBits; //settings window Port Data Bits label
-JLabel labelPortStopBits; //settings window Port Stop Bits label
-JPanel panelMainSettings; //settings window main panel
-JComboBox comboBoxPort; //settings window Port combo box
-JComboBox comboBoxBaudRate; //settings window Baud Rate combo box
-JComboBox comboBoxPortParity; //settings window Port Parity combo box
-JComboBox comboBoxPortDataBits; //settings window Port Data Bits combo box
-JComboBox comboBoxPortStopBits; //settings window Port Stop Bits combo box
-JCheckBox checkBoxTimeStamp = new JCheckBox(); //settings window Time Stamp check box Initialized here due to cli dependencies
-JButton buttonOk; //settings window OK button
-JButton buttonCancel; //settings window Cancel button
-JButton buttonStartLog; //settings window Start Log button
-JButton buttonStopLog; //settings window Stop Log button
-JButton buttonBrowse; //settings window Browse button
-JTextField textFieldFileName; //settings window File Name text field
-JTextField textFieldFileDir; //settings window File Directory text field
-SpringLayout layoutSettings = new SpringLayout(); //settings window layout manager
+////Controls for settings window
+//JFrame frameSettings; //settings window frame
+//JLabel labelPortConfig; //settings window Port Configuration label
+//JLabel labelPort; //settings window Port label
+//JLabel labelBaudRate; //settings window Baud Rate label
+//JLabel labelDataConfig; //settings window Data Configuration label
+//JLabel labelLogConfig; //settings window Log Configuration label
+//JLabel labelPortParity; //settings window Port Parity label
+//JLabel labelPortDataBits; //settings window Port Data Bits label
+//JLabel labelPortStopBits; //settings window Port Stop Bits label
+//JPanel panelMainSettings; //settings window main panel
+//JComboBox comboBoxPort; //settings window Port combo box
+//JComboBox comboBoxBaudRate; //settings window Baud Rate combo box
+//JComboBox comboBoxPortParity; //settings window Port Parity combo box
+//JComboBox comboBoxPortDataBits; //settings window Port Data Bits combo box
+//JComboBox comboBoxPortStopBits; //settings window Port Stop Bits combo box
+//JCheckBox checkBoxTimeStamp = new JCheckBox(); //settings window Time Stamp check box Initialized here due to cli dependencies
+//JButton buttonOk; //settings window OK button
+//JButton buttonCancel; //settings window Cancel button
+//JButton buttonStartLog; //settings window Start Log button
+//JButton buttonStopLog; //settings window Stop Log button
+//JButton buttonBrowse; //settings window Browse button
+//JTextField textFieldFileName; //settings window File Name text field
+//JTextField textFieldFileDir; //settings window File Directory text field
+//SpringLayout layoutSettings = new SpringLayout(); //settings window layout manager
 
-BufferedImage bufferedIcon; //buffered image for icon
+//BufferedImage bufferedIcon; //buffered image for icon
