@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["Cascadia", "Lucida"]
+  "cSpell.words": ["Cascadia", "Lucida"],
+  "js/ts.suggest.completeFunctionCalls": false
 }

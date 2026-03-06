@@ -1,15 +1,14 @@
 
- import processing.serial.*;          //import serial library
+import processing.serial.*;          //import serial library
 // import java.awt.*;                   //import awt library
 // import java.awt.Font;                //import awt font library
 // import java.awt.event.*;             //import awt event library
 // import java.awt.event.KeyAdapter;    //import awt key adapter library
 // import java.awt.event.KeyEvent;      //import awt key event library
 // import java.awt.Dimension.*;         //import awt dimension library
-// import java.awt.image.BufferedImage; //import awt buffered image library
 // import javax.swing.*;                //import swing library
 // import javax.swing.event.*;          //import swing event library
-// import javax.swing.text.*;           //import swing text library
+ //import javax.swing.text.*;           //import swing text library
 // import java.io.File;                 //import file library
 // import java.io.FileWriter;           //import file writer library
 // import java.util.Collections;        //import collections library
@@ -18,43 +17,43 @@
 // javax.swing.JFrame frame; //create instance of JFrame
 // java.awt.Canvas canvas;   //create instance of Canvas
 
-// //append text to textAreaMain
-// public void textAreaMainMsg(String A, String MSG, String B) {
-//   textAreaMainMsgIsRunning = true;
-//   if (showTimeStamp == true && A == "\n") {
-//     textAreaMain.append(A + hour() + ":" + minute() + ":" + second() + " " + MSG + B);
-//     textAreaMain.setCaretPosition(textAreaMain.getDocument().getLength());
-//     logOutputData = A + hour() + ":" + minute() + ":" + second() + " " + MSG + B;
-//     if (initLogFileOk) {
-//       writeToFile(logOutputData);
-//     }
-//   } else if (showTimeStamp == true && MSG.startsWith("\n")) {
-//     textAreaMain.append(A + MSG + hour() + ":" + minute() + ":" + second() + " " + B);
-//     textAreaMain.setCaretPosition(textAreaMain.getDocument().getLength());
-//     logOutputData = A + MSG + hour() + ":" + minute() + ":" + second() + " " + B;
-//     if (initLogFileOk) {
-//       writeToFile(logOutputData);
-//     }
-//   } else {
-//     textAreaMain.append(A + MSG + B);
-//     textAreaMain.setCaretPosition(textAreaMain.getDocument().getLength());
-//     logOutputData = A + MSG + B;
-//     //print(logOutputData);
-//     if (initLogFileOk) {
-//       writeToFile(logOutputData);
-//     }
-//   }
-// }
+//append text to textAreaMain
+public void TextAreaMainMsg(String A, String MSG, String B) {
+  textAreaMainMsgIsRunning = true;
+  if (showTimeStamp == true && A == "\n") {
+    TextAreaMain.appendText(A + hour() + ":" + minute() + ":" + second() + " " + MSG + B);
+    //textAreaMain.setCaretPosition(textAreaMain.getDocument().getLength());
+    logOutputData = A + hour() + ":" + minute() + ":" + second() + " " + MSG + B;
+    if (initLogFileOk) {
+      //writeToFile(logOutputData);
+    }
+  } else if (showTimeStamp == true && MSG.startsWith("\n")) {
+    TextAreaMain.appendText(A + MSG + hour() + ":" + minute() + ":" + second() + " " + B);
+    //textAreaMain.setCaretPosition(textAreaMain.getDocument().getLength());
+    logOutputData = A + MSG + hour() + ":" + minute() + ":" + second() + " " + B;
+    if (initLogFileOk) {
+      //writeToFile(logOutputData);
+    }
+  } else {
+    TextAreaMain.appendText(A + MSG + B);
+    //textAreaMain.setCaretPosition(textAreaMain.getDocument().getLength());
+    logOutputData = A + MSG + B;
+    //print(logOutputData);
+    if (initLogFileOk) {
+      //writeToFile(logOutputData);
+    }
+  }
+}
 
-// //generate default random file name
-// public String genFileName(String randomFileName) {
-//   if (lettersIndex == 26) {
-//     lettersIndex = 0;
-//   }
-//   randomFileName = "log_" + day() + "-" + month() + "-" + year() + letters[lettersIndex] + hour()+minute()+second();
-//   lettersIndex++;
-//   return randomFileName;
-// }
+//generate default random file name
+public String genFileName(String randomFileName) {
+  if (lettersIndex == 26) {
+    lettersIndex = 0;
+  }
+  randomFileName = "log_" + day() + "-" + month() + "-" + year() + letters[lettersIndex] + hour()+minute()+second();
+  lettersIndex++;
+  return randomFileName;
+}
 
 // // get current operating system
 public void getOS() {
@@ -77,57 +76,109 @@ public void getOS() {
   }
 }
 
-// //initialize controls for search function
-// public void initSearch() {
-//   try {
-//     hilit = new DefaultHighlighter();
-//     painter = new DefaultHighlighter.DefaultHighlightPainter(Color.YELLOW);
-//     systemPrintln("initSearch complete @ " + millis());
-//   }
-//   catch (Exception e) {
-//     systemPrintln("initSearch failed @ " + millis());
-//   }
-// }
+//initialize controls for search function
+public void initSearch() {
+  // try {
+  //   hilit = new DefaultHighlighter();
+  //   painter = new DefaultHighlighter.DefaultHighlightPainter(Color.YELLOW);
+  //   systemPrintln("initSearch complete @ " + millis());
+  // }
+  // catch (Exception e) {
+  //   systemPrintln("initSearch failed @ " + millis());
+  // }
+  // try {
+  //   //highlighter = new JFXHighlighter();
+  //   //highlighter.setPaint(Color.YELLOW);
+  //   systemPrintln("initSearch complete @ " + millis());
+  // }
+  // catch (Exception e) {
+  //   systemPrintln("initSearch failed @ " + millis() + e);
+  // }
+  // Create a TextArea and TextFlow
+        // TextFlow textFlow = new TextFlow();
 
-// //search textAreaMain
-// public void getSearch(String searchText) {
-//   try { // try searching textAreaMain
-//     if (textFieldSearchHasText == true) { //textFieldSearch has text other than prompt text
-//       if (searchText.length() > 0) { //only run if search text is longer than zero
-//         String textAreaMainText = textAreaMain.getText();
-//         hilit = textAreaMain.getHighlighter();
-//         hilit.removeAllHighlights();
-//         int index = textAreaMainText.indexOf(searchText);
-//         while (index >= 0) { //search text
-//           int searchTextLength = searchText.length();
-//           hilit.addHighlight(index, index+searchTextLength, painter);
-//           index = textAreaMainText.indexOf(searchText, index + searchTextLength);
-//         }
-//       } else { //remove all highlights
-//         hilit.removeAllHighlights();
-//       }
-//     }
-//     systemPrintln("getSearch complete @ " + millis());
-//   }
-//   catch (Exception e) { //catch search exception
-//     systemPrintln("getSearch failed @ " + millis());
-//   }
-// }
+        // // Bind the height and width of TextFlow to the TextArea
+        // textFlow.prefHeightProperty().bind(TextAreaMain.heightProperty());
+        // textFlow.prefWidthProperty().bind(TextAreaMain.widthProperty());
 
-// //convert PImage to BufferedImage
-//BufferedImage convertToBufferedImage(PImage imgToConvert) {
-//  imgToConvert.loadPixels(); //load pixel data
-//  BufferedImage convertedImg = new BufferedImage(imgToConvert.width, imgToConvert.height, BufferedImage.TYPE_INT_ARGB);
+        // // Example text for TextArea
+        // String exampleText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
 
-//  for (int y = 0; y < imgToConvert.height; y++) {
-//    for (int x = 0; x < imgToConvert.width; x++) {
-//      int loc = x + y * imgToConvert.width;
-//      convertedImg.setRGB(x, y, imgToConvert.pixels[loc]); // Copy pixel data
-//    }
-//  }
-//  return convertedImg;
-//}
-// // print to system console
+        // // Set initial text to TextArea
+        // TextAreaMain.appendText(exampleText);
+
+        // // Add a listener to TextArea textProperty to highlight specific words
+        // TextAreaMain.textProperty().addListener((observable, oldValue, newValue) -> {
+        //     highlightText(newValue, textFlow);
+        // });
+
+}
+
+    // Method to highlight specific text in TextFlow
+    private void highlightText(String text, TextFlow textFlow) {
+        textFlow.getChildren().clear(); // Clear previous content
+
+        // Split text into segments by space
+        String[] words = text.split("\\s+");
+
+        // Iterate through each word and apply styles
+        for (String word : words) {
+            Text textNode = new Text(word + " ");
+            if (word.equalsIgnoreCase("ipsum") || word.equalsIgnoreCase("consectetur")) {
+                // Example: highlight "ipsum" and "consectetur" with different background color
+                textNode.setFill(Color.RED);
+                textNode.setStyle("-fx-font-weight: bold;");
+            } else {
+                // Default style for other words
+                textNode.setFill(Color.BLACK);
+            }
+            textFlow.getChildren().add(textNode);
+        }
+    }
+
+//search textAreaMain
+public void getSearch(String searchText) {
+  // try { // try searching textAreaMain
+  //   if (textFieldSearchHasText == true) { //textFieldSearch has text other than prompt text
+  //     if (searchText.length() > 0) { //only run if search text is longer than zero
+  //       String textAreaMainText = textAreaMain.getText();
+  //       hilit = textAreaMain.getHighlighter();
+  //       hilit.removeAllHighlights();
+  //       int index = textAreaMainText.indexOf(searchText);
+  //       while (index >= 0) { //search text
+  //         int searchTextLength = searchText.length();
+  //         hilit.addHighlight(index, index+searchTextLength, painter);
+  //         index = textAreaMainText.indexOf(searchText, index + searchTextLength);
+  //       }
+  //     } else { //remove all highlights
+  //       hilit.removeAllHighlights();
+  //     }
+  //   }
+  //   systemPrintln("getSearch complete @ " + millis());
+  // }
+  // catch (Exception e) { //catch search exception
+  //   systemPrintln("getSearch failed @ " + millis());
+  // }
+  // VBox parent = new VBox(TextAreaMain, ButtonSettings);
+  // ButtonSettings.setOnAction(event -> {
+  //   highlighter.highlight(parent, searchText);
+  //   event.consume();
+  // });
+}
+//convert PImage to BufferedImage
+BufferedImage convertToBufferedImage(PImage imgToConvert) {
+ imgToConvert.loadPixels(); //load pixel data
+ BufferedImage convertedImg = new BufferedImage(imgToConvert.width, imgToConvert.height, BufferedImage.TYPE_INT_ARGB);
+
+ for (int y = 0; y < imgToConvert.height; y++) {
+   for (int x = 0; x < imgToConvert.width; x++) {
+     int loc = x + y * imgToConvert.width;
+     convertedImg.setRGB(x, y, imgToConvert.pixels[loc]); // Copy pixel data
+   }
+ }
+ return convertedImg;
+}
+// print to system console
 public void systemPrintln(String msg) {
   if (showDebugStatements == true) {
     System.out.println(msg);
@@ -136,43 +187,41 @@ public void systemPrintln(String msg) {
   }
 }
 
-// // set terminal text fonts
-// public void setFont(String fontName, float fontSize) {
-//   try {
-//     // Path to your font file (TTF or OTF)
-//     File fontFile = new File(dataPath("") + OsDirChar + fontName);
-//     //println(fontFile.getAbsolutePath());
-//     if (!fontFile.exists()) {
-//       throw new IOException("Font file not found: " + fontFile.getAbsolutePath());
-//     }
+// set terminal text fonts
+public void setFont(String fontName, float fontSize) {
+  try {
+    // Path to your font file (TTF or OTF)
+    File fontFile = new File(dataPath("") + OsDirChar + fontName);
+    //println(fontFile.getAbsolutePath());
+    if (!fontFile.exists()) {
+      throw new IOException("Font file not found: " + fontFile.getAbsolutePath());
+    }
 
-//     // Load the font
-//     Font customFont = Font.createFont(Font.TRUETYPE_FONT, fontFile)
-//       .deriveFont(Font.PLAIN, fontSize); // Set style and size
+    // Load the font
+     Font systemFont = Font.loadFont(new FileInputStream(fontFile), fontSize); // Set style and size
 
-//     // Apply font to textAreaMain and textFieldMain
-//     textAreaMain.setFont(customFont);
-//     textFieldMain.setFont(customFont);
-//     systemPrintln("setFont complete @ " + millis());
-//   }
-//   catch (FontFormatException e) {
-//     System.err.println("Invalid font format: " + e.getMessage());
-//   }
-//   catch (IOException e) {
-//     System.err.println("Error loading font: " + e.getMessage());
-//   }
-// }
-
-// // Processing setup function
+    // Apply font to textAreaMain and textFieldMain
+    TextAreaMain.setFont(systemFont);
+    TextFieldMain.setFont(systemFont);
+    systemPrintln("setFont complete @ " + millis());
+  }
+  catch (IOException e) {
+    System.err.println("Error loading font: " + e.getMessage());
+  }
+}
+ 
+// Processing setup function
 public void setup() {
   size(700, 500, FX2D); //set initial window size
   background(#FFFFFF); //set background color
   surface.setTitle(versionInfo); //set surface title
-  //icon = loadImage("icon.png");    //import software icon
-  //bufferedIcon = convertToBufferedImage(icon); //convert PImage to BufferedImage for use as JFrame icon
+  icon = loadImage("icon.png");    //import software icon
+  bufferedIcon = convertToBufferedImage(icon); //convert PImage to BufferedImage for use as JFrame icon
+  surface.setIcon(icon); //set software icon
   canvas = (Canvas)surface.getNative(); //get native canvas
   root = (StackPane)canvas.getParent(); //get parent of canvas
   pane = addControls(); //add controls to pane
+
   // frame = (javax.swing.JFrame) ((processing.awt.PSurfaceAWT.SmoothCanvas) surface.getNative()).getFrame();
   // canvas = (processing.awt.PSurfaceAWT.SmoothCanvas) ((processing.awt.PSurfaceAWT)surface).getNative();
   // frame.setLocation(displayWidth/2 - wndMinW/2, displayHeight/2 - wndMinH/2);
@@ -240,23 +289,25 @@ public void setup() {
   // while (mainUiInit == false) {
   //   delay(1);
   // }
-  // getOS();          //get operating system
-  // loadTable();    //load preferences table
-  // getTableData(); //get preferences table data
+
+   getOS();          //get operating system
+   loadTable();    //load preferences table
+   getTableData(); //get preferences table data
   // searchForPorts(); //search for available serial ports
-  // initSearch();     //initialize textAreaMain searching
-  // //set startup message length based on selected font size
-  // if (selectedFontSize == 12) {
-  //   textAreaMainMsg("", " -------------------------------------" + versionInfo +  "-------------------------------------", "");
-  // } else   if (selectedFontSize == 14) {
-  //   textAreaMainMsg("", " -------------------------------" + versionInfo +  "-------------------------------", "");
-  // } else   if (selectedFontSize == 16) {
-  //   textAreaMainMsg("", " -----------------------" + versionInfo +  "----------------------", "");
-  // } else   if (selectedFontSize == 18) {
-  //   textAreaMainMsg("", " -------------------" + versionInfo +  "--------------------", "");
-  // }
-  //textAreaMainMsg("\n", "Enter -h for help", ""); //print help message
+  //getSearch("e");
+  //set startup message length based on selected font size
+  if (selectedFontSize == 12) {
+    TextAreaMainMsg("", " -------------------------------------" + versionInfo +  "-------------------------------------", "");
+  } else   if (selectedFontSize == 14) {
+    TextAreaMainMsg("", " -------------------------------" + versionInfo +  "-------------------------------", "");
+  } else   if (selectedFontSize == 16) {
+    TextAreaMainMsg("", " -----------------------" + versionInfo +  "----------------------", "");
+  } else   if (selectedFontSize == 18) {
+    TextAreaMainMsg("", " -------------------" + versionInfo +  "--------------------", "");
+  }
+  TextAreaMainMsg("\n", "Enter -h for help", ""); //print help message
   systemPrintln("Startup complete" + " @ " + millis());
+
 } // END setup
 
 // // Processing loop function
@@ -267,3 +318,4 @@ public void setup() {
 // public void settings() {
 //   size(wndMinW, wndMinH);
 // }
+

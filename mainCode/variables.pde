@@ -109,6 +109,14 @@ processing.serial.Serial COMPort = null; //create object of Serial class
 Table preferenceTable; //preferences table
 
 //Controls for main window
+Button ButtonConnect; //main window connect button
+Button ButtonClear; //main window clear button
+Button ButtonLogPauseResume; //main window log pause/resume button
+Button ButtonSettings; //main window settings button
+TextArea TextAreaMain; //main window text area
+TextField TextFieldMain; //main window text field
+TextField TextFieldSearch; //main window search text field
+
 //JPanel panelMain; //main window panel
 //JTextArea textAreaMain; //main window text area
 //JTextField textFieldMain; //main window text field
@@ -120,7 +128,7 @@ Table preferenceTable; //preferences table
 //JButton buttonLogPauseResume; //main window log pause/resume button
 //Highlighter hilit;  //highlighter for textAreaMain search function
 //Highlighter.HighlightPainter painter;   //painter for textAreaMain search function
-
+//JFXHighlighter highlighter;  //highlighter for textAreaMain search function
 ////Controls for settings window
 //JFrame frameSettings; //settings window frame
 //JLabel labelPortConfig; //settings window Port Configuration label
@@ -147,4 +155,4 @@ Table preferenceTable; //preferences table
 //JTextField textFieldFileDir; //settings window File Directory text field
 //SpringLayout layoutSettings = new SpringLayout(); //settings window layout manager
 
-//BufferedImage bufferedIcon; //buffered image for icon
+BufferedImage bufferedIcon; //buffered image for icon

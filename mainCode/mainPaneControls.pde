@@ -339,12 +339,81 @@ Pane addControls() {
   pane = new Pane(); //create pane for main window controls
   root.getChildren().add(pane);
 
-  Button ButtonConnect = new Button("Connect");
+  /*====== Connect Button ======*/
+  ButtonConnect = new Button("Connect");
   ButtonConnect.setLayoutX(wndPD);
   ButtonConnect.setLayoutY(wndPD);
   ButtonConnect.setPrefSize(width - 251, 25);
-  //ButtonConnect.setStyle("-fx-font-size: 14; -fx-background-color: #EC4242; -fx-text-fill: black;");
+  ButtonConnect.setPadding(new Insets(0,0,0,0));
+  ButtonConnect.setFont(Font.font("Oxygen", 14));
   pane.getChildren().add(ButtonConnect);
+  //END Connect Button
+
+  /*====== Clear Button ======*/
+  ButtonClear = new Button("Clear");
+  ButtonClear.setLayoutX(wndPD + ButtonConnect.getLayoutX() + ButtonConnect.getPrefWidth());
+  ButtonClear.setLayoutY(wndPD);
+  ButtonClear.setPrefSize(75, 25);
+
+  //add action listener for ButtonClear clears TextAreaMain
+  ButtonClear.setOnAction(event -> {
+    try {
+      TextAreaMain.clear();
+    }
+    catch (Exception err) {
+      systemPrintln("Error clearing text area: " + err.getMessage());
+    }
+  }
+  );
+  pane.getChildren().add(ButtonClear);
+  //END Clear Button
+
+  /*====== Log Pause/Resume Button ======*/
+  ButtonLogPauseResume = new Button("Log On/Off");
+  ButtonLogPauseResume.setLayoutX(wndPD + ButtonClear.getLayoutX() + ButtonClear.getPrefWidth());
+  ButtonLogPauseResume.setLayoutY(wndPD);
+  ButtonLogPauseResume.setPrefSize(75, 25);
+  ButtonLogPauseResume.setPadding(new Insets(0, 0, 0, 0));
+  pane.getChildren().add(ButtonLogPauseResume);
+  //END Log Pause/Resume Button
+
+  /*====== Settings Button ======*/
+  ButtonSettings = new Button("Settings");
+  ButtonSettings.setLayoutX(wndPD + ButtonLogPauseResume.getLayoutX() + ButtonLogPauseResume.getPrefWidth());
+  ButtonSettings.setLayoutY(wndPD);
+  ButtonSettings.setPrefSize(75, 25);
+  ButtonSettings.setOnAction(event -> {
+    initSearch();
+  }
+);
+  pane.getChildren().add(ButtonSettings);
+  //END Settings Button
+
+  /*====== Main Window Terminal Text Area ======*/
+  TextAreaMain = new TextArea();
+  TextAreaMain.setLayoutX(wndPD);
+  TextAreaMain.setLayoutY(wndPD*2 + ButtonConnect.getPrefHeight());
+  TextAreaMain.setPrefSize(width - wndPD*2, height - 75);
+  //TextAreaMain.setEditable(false);
+  pane.getChildren().add(TextAreaMain);
+  //END Main Window Terminal Text Area
+
+  /*====== Main Window Text input Field ======*/
+  TextFieldMain = new TextField();
+  TextFieldMain.setLayoutX(wndPD);
+  TextFieldMain.setLayoutY(wndPD + TextAreaMain.getLayoutY() + TextAreaMain.getPrefHeight());
+  TextFieldMain.setPrefSize(width - 215, 30);
+  pane.getChildren().add(TextFieldMain);
+  //END Main Window Text input Field
+
+  /*====== Main Window Search Text Field ======*/
+  TextFieldSearch = new TextField("Enter search text.");
+  TextFieldSearch.setLayoutX(wndPD*2 + TextFieldMain.getPrefWidth());
+  TextFieldSearch.setLayoutY(wndPD + TextAreaMain.getLayoutY() + TextAreaMain.getPrefHeight());
+  TextFieldSearch.setPrefSize(200, 30);
+  pane.getChildren().add(TextFieldSearch);
+  //END Main Window Search Text Field
+
   return pane;
 }
 
