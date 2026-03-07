@@ -338,21 +338,22 @@
 Pane addControls() {
   pane = new Pane(); //create pane for main window controls
   root.getChildren().add(pane);
+  addMainUI(); //add main window UI controls to pane
+ 
+  return pane;
+}
 
-  /*====== Connect Button ======*/
+//UI controls in main window top row HBox
+private void initTopHBoxUi() {
+    /*====== Connect Button ======*/
   ButtonConnect = new Button("Connect");
-  ButtonConnect.setLayoutX(wndPD);
-  ButtonConnect.setLayoutY(wndPD);
   ButtonConnect.setPrefSize(width - 251, 25);
   ButtonConnect.setPadding(new Insets(0,0,0,0));
   ButtonConnect.setFont(Font.font("Oxygen", 14));
-  pane.getChildren().add(ButtonConnect);
   //END Connect Button
 
   /*====== Clear Button ======*/
   ButtonClear = new Button("Clear");
-  ButtonClear.setLayoutX(wndPD + ButtonConnect.getLayoutX() + ButtonConnect.getPrefWidth());
-  ButtonClear.setLayoutY(wndPD);
   ButtonClear.setPrefSize(75, 25);
 
   //add action listener for ButtonClear clears TextAreaMain
@@ -365,44 +366,46 @@ Pane addControls() {
     }
   }
   );
-  pane.getChildren().add(ButtonClear);
   //END Clear Button
 
   /*====== Log Pause/Resume Button ======*/
   ButtonLogPauseResume = new Button("Log On/Off");
-  ButtonLogPauseResume.setLayoutX(wndPD + ButtonClear.getLayoutX() + ButtonClear.getPrefWidth());
-  ButtonLogPauseResume.setLayoutY(wndPD);
   ButtonLogPauseResume.setPrefSize(75, 25);
   ButtonLogPauseResume.setPadding(new Insets(0, 0, 0, 0));
-  pane.getChildren().add(ButtonLogPauseResume);
   //END Log Pause/Resume Button
 
   /*====== Settings Button ======*/
   ButtonSettings = new Button("Settings");
-  ButtonSettings.setLayoutX(wndPD + ButtonLogPauseResume.getLayoutX() + ButtonLogPauseResume.getPrefWidth());
-  ButtonSettings.setLayoutY(wndPD);
   ButtonSettings.setPrefSize(75, 25);
   ButtonSettings.setOnAction(event -> {
-    initSearch();
   }
-);
-  pane.getChildren().add(ButtonSettings);
+  );
   //END Settings Button
 
+  //create HBox for top buttons and add buttons to HBox
+  topUiHBox = new HBox(ButtonConnect, ButtonClear, ButtonLogPauseResume, ButtonSettings);
+  topUiHBox.setSpacing(wndPD);
+  //END top buttons
+}
+
+private void initTextAreaMain() {
   /*====== Main Window Terminal Text Area ======*/
   TextAreaMain = new TextArea();
   TextAreaMain.setLayoutX(wndPD);
   TextAreaMain.setLayoutY(wndPD*2 + ButtonConnect.getPrefHeight());
   TextAreaMain.setPrefSize(width - wndPD*2, height - 75);
-  //TextAreaMain.setEditable(false);
-  pane.getChildren().add(TextAreaMain);
+  TextAreaMain.setEditable(false);
   //END Main Window Terminal Text Area
 
+}
+
+//UI controls in main window bottom row HBox
+private void initBottomHBoxUi() {
   /*====== Main Window Text input Field ======*/
   TextFieldMain = new TextField();
   TextFieldMain.setLayoutX(wndPD);
   TextFieldMain.setLayoutY(wndPD + TextAreaMain.getLayoutY() + TextAreaMain.getPrefHeight());
-  TextFieldMain.setPrefSize(width - 215, 30);
+  TextFieldMain.setPrefSize(width - wndPD*2, 30);
   pane.getChildren().add(TextFieldMain);
   //END Main Window Text input Field
 
@@ -414,6 +417,22 @@ Pane addControls() {
   pane.getChildren().add(TextFieldSearch);
   //END Main Window Search Text Field
 
-  return pane;
+  //create HBox for bottom text fields and add text fields to HBox
+  bottomUiHBox = new HBox(TextFieldMain);
+  bottomUiHBox.setSpacing(wndPD);
+}
+
+//add main window UI controls to pane
+private void addMainUI() {
+  initTopHBoxUi();
+  initTextAreaMain();
+  initBottomHBoxUi();
+  mainUiVBox = new VBox();
+  mainUiVBox.setLayoutX(wndPD);
+  mainUiVBox.setLayoutY(wndPD);
+  mainUiVBox.setSpacing(wndPD);
+  mainUiVBox.getChildren().addAll(topUiHBox, TextAreaMain, bottomUiHBox);
+  pane.getChildren().add(mainUiVBox);
+
 }
 

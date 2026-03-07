@@ -77,94 +77,44 @@ public void getOS() {
 }
 
 //initialize controls for search function
-public void initSearch() {
-  // try {
-  //   hilit = new DefaultHighlighter();
-  //   painter = new DefaultHighlighter.DefaultHighlightPainter(Color.YELLOW);
-  //   systemPrintln("initSearch complete @ " + millis());
-  // }
-  // catch (Exception e) {
-  //   systemPrintln("initSearch failed @ " + millis());
-  // }
-  // try {
-  //   //highlighter = new JFXHighlighter();
-  //   //highlighter.setPaint(Color.YELLOW);
-  //   systemPrintln("initSearch complete @ " + millis());
-  // }
-  // catch (Exception e) {
-  //   systemPrintln("initSearch failed @ " + millis() + e);
-  // }
-  // Create a TextArea and TextFlow
-        // TextFlow textFlow = new TextFlow();
-
-        // // Bind the height and width of TextFlow to the TextArea
-        // textFlow.prefHeightProperty().bind(TextAreaMain.heightProperty());
-        // textFlow.prefWidthProperty().bind(TextAreaMain.widthProperty());
-
-        // // Example text for TextArea
-        // String exampleText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
-
-        // // Set initial text to TextArea
-        // TextAreaMain.appendText(exampleText);
-
-        // // Add a listener to TextArea textProperty to highlight specific words
-        // TextAreaMain.textProperty().addListener((observable, oldValue, newValue) -> {
-        //     highlightText(newValue, textFlow);
-        // });
-
-}
-
-    // Method to highlight specific text in TextFlow
-    private void highlightText(String text, TextFlow textFlow) {
-        textFlow.getChildren().clear(); // Clear previous content
-
-        // Split text into segments by space
-        String[] words = text.split("\\s+");
-
-        // Iterate through each word and apply styles
-        for (String word : words) {
-            Text textNode = new Text(word + " ");
-            if (word.equalsIgnoreCase("ipsum") || word.equalsIgnoreCase("consectetur")) {
-                // Example: highlight "ipsum" and "consectetur" with different background color
-                textNode.setFill(Color.RED);
-                textNode.setStyle("-fx-font-weight: bold;");
-            } else {
-                // Default style for other words
-                textNode.setFill(Color.BLACK);
-            }
-            textFlow.getChildren().add(textNode);
-        }
-    }
-
-//search textAreaMain
-public void getSearch(String searchText) {
-  // try { // try searching textAreaMain
-  //   if (textFieldSearchHasText == true) { //textFieldSearch has text other than prompt text
-  //     if (searchText.length() > 0) { //only run if search text is longer than zero
-  //       String textAreaMainText = textAreaMain.getText();
-  //       hilit = textAreaMain.getHighlighter();
-  //       hilit.removeAllHighlights();
-  //       int index = textAreaMainText.indexOf(searchText);
-  //       while (index >= 0) { //search text
-  //         int searchTextLength = searchText.length();
-  //         hilit.addHighlight(index, index+searchTextLength, painter);
-  //         index = textAreaMainText.indexOf(searchText, index + searchTextLength);
-  //       }
-  //     } else { //remove all highlights
-  //       hilit.removeAllHighlights();
-  //     }
-  //   }
-  //   systemPrintln("getSearch complete @ " + millis());
-  // }
-  // catch (Exception e) { //catch search exception
-  //   systemPrintln("getSearch failed @ " + millis());
-  // }
-  // VBox parent = new VBox(TextAreaMain, ButtonSettings);
-  // ButtonSettings.setOnAction(event -> {
-  //   highlighter.highlight(parent, searchText);
-  //   event.consume();
-  // });
-}
+// public void initSearch() {
+//   try {
+//     hilit = new DefaultHighlighter();
+//     painter = new DefaultHighlighter.DefaultHighlightPainter(Color.YELLOW);
+//     systemPrintln("initSearch complete @ " + millis());
+//   }
+//   catch (Exception e) {
+//     systemPrintln("initSearch failed @ " + millis());
+//   }
+// }
+// public void getSearch(String searchText) {
+//   // try { // try searching textAreaMain
+//   //   if (textFieldSearchHasText == true) { //textFieldSearch has text other than prompt text
+//   //     if (searchText.length() > 0) { //only run if search text is longer than zero
+//   //       String textAreaMainText = textAreaMain.getText();
+//   //       hilit = textAreaMain.getHighlighter();
+//   //       hilit.removeAllHighlights();
+//   //       int index = textAreaMainText.indexOf(searchText);
+//   //       while (index >= 0) { //search text
+//   //         int searchTextLength = searchText.length();
+//   //         hilit.addHighlight(index, index+searchTextLength, painter);
+//   //         index = textAreaMainText.indexOf(searchText, index + searchTextLength);
+//   //       }
+//   //     } else { //remove all highlights
+//   //       hilit.removeAllHighlights();
+//   //     }
+//   //   }
+//   //   systemPrintln("getSearch complete @ " + millis());
+//   // }
+//   // catch (Exception e) { //catch search exception
+//   //   systemPrintln("getSearch failed @ " + millis());
+//   // }
+//   // VBox parent = new VBox(TextAreaMain, ButtonSettings);
+//   // ButtonSettings.setOnAction(event -> {
+//   //   highlighter.highlight(parent, searchText);
+//   //   event.consume();
+//   // });
+// }
 //convert PImage to BufferedImage
 BufferedImage convertToBufferedImage(PImage imgToConvert) {
  imgToConvert.loadPixels(); //load pixel data
@@ -209,7 +159,7 @@ public void setFont(String fontName, float fontSize) {
     System.err.println("Error loading font: " + e.getMessage());
   }
 }
- 
+
 // Processing setup function
 public void setup() {
   size(700, 500, FX2D); //set initial window size
@@ -221,6 +171,8 @@ public void setup() {
   canvas = (Canvas)surface.getNative(); //get native canvas
   root = (StackPane)canvas.getParent(); //get parent of canvas
   pane = addControls(); //add controls to pane
+
+
 
   // frame = (javax.swing.JFrame) ((processing.awt.PSurfaceAWT.SmoothCanvas) surface.getNative()).getFrame();
   // canvas = (processing.awt.PSurfaceAWT.SmoothCanvas) ((processing.awt.PSurfaceAWT)surface).getNative();
@@ -294,16 +246,15 @@ public void setup() {
    loadTable();    //load preferences table
    getTableData(); //get preferences table data
   // searchForPorts(); //search for available serial ports
-  //getSearch("e");
   //set startup message length based on selected font size
   if (selectedFontSize == 12) {
-    TextAreaMainMsg("", " -------------------------------------" + versionInfo +  "-------------------------------------", "");
+    TextAreaMainMsg("", " ------------------------------------" + versionInfo +  "------------------------------------", "");
   } else   if (selectedFontSize == 14) {
-    TextAreaMainMsg("", " -------------------------------" + versionInfo +  "-------------------------------", "");
+    TextAreaMainMsg("", " -----------------------------" + versionInfo +  "-----------------------------", "");
   } else   if (selectedFontSize == 16) {
-    TextAreaMainMsg("", " -----------------------" + versionInfo +  "----------------------", "");
+    TextAreaMainMsg("", " ------------------------" + versionInfo +  "------------------------", "");
   } else   if (selectedFontSize == 18) {
-    TextAreaMainMsg("", " -------------------" + versionInfo +  "--------------------", "");
+    TextAreaMainMsg("", " --------------------" + versionInfo +  "--------------------", "");
   }
   TextAreaMainMsg("\n", "Enter -h for help", ""); //print help message
   systemPrintln("Startup complete" + " @ " + millis());

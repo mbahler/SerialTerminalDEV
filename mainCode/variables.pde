@@ -109,6 +109,9 @@ processing.serial.Serial COMPort = null; //create object of Serial class
 Table preferenceTable; //preferences table
 
 //Controls for main window
+Pane pane;
+Canvas canvas;
+StackPane root;
 Button ButtonConnect; //main window connect button
 Button ButtonClear; //main window clear button
 Button ButtonLogPauseResume; //main window log pause/resume button
@@ -116,12 +119,14 @@ Button ButtonSettings; //main window settings button
 TextArea TextAreaMain; //main window text area
 TextField TextFieldMain; //main window text field
 TextField TextFieldSearch; //main window search text field
-
+HBox topUiHBox; //HBox for top row of UI controls
+HBox bottomUiHBox; //HBox for bottom row of UI controls
+VBox mainUiVBox; //VBox for all main UI controls
 //JPanel panelMain; //main window panel
-//JTextArea textAreaMain; //main window text area
+//JTextArea TextAreaMain; //main window text area
 //JTextField textFieldMain; //main window text field
 //JTextField textFieldSearch; //main window search text field
-//JScrollPane textAreaMainScrollPane; //main window text area scroll pane
+//JScrollPane TextAreaMainScrollPane; //main window text area scroll pane
 //JButton buttonConnect; //main window connect button
 //JButton buttonClear; //main window clear button
 //JButton buttonSettings; //main window settings button
