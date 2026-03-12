@@ -8,7 +8,7 @@ import processing.serial.*;          //import serial library
 // import java.awt.Dimension.*;         //import awt dimension library
 // import javax.swing.*;                //import swing library
 // import javax.swing.event.*;          //import swing event library
- //import javax.swing.text.*;           //import swing text library
+//import javax.swing.text.*;           //import swing text library
 // import java.io.File;                 //import file library
 // import java.io.FileWriter;           //import file writer library
 // import java.util.Collections;        //import collections library
@@ -21,21 +21,21 @@ import processing.serial.*;          //import serial library
 public void TextAreaMainMsg(String A, String MSG, String B) {
   textAreaMainMsgIsRunning = true;
   if (showTimeStamp == true && A == "\n") {
-    TextAreaMain.appendText(A + hour() + ":" + minute() + ":" + second() + " " + MSG + B);
+    //TextAreaMain.appendText(A + hour() + ":" + minute() + ":" + second() + " " + MSG + B);
     //textAreaMain.setCaretPosition(textAreaMain.getDocument().getLength());
     logOutputData = A + hour() + ":" + minute() + ":" + second() + " " + MSG + B;
     if (initLogFileOk) {
       //writeToFile(logOutputData);
     }
   } else if (showTimeStamp == true && MSG.startsWith("\n")) {
-    TextAreaMain.appendText(A + MSG + hour() + ":" + minute() + ":" + second() + " " + B);
+    // TextAreaMain.appendText(A + MSG + hour() + ":" + minute() + ":" + second() + " " + B);
     //textAreaMain.setCaretPosition(textAreaMain.getDocument().getLength());
     logOutputData = A + MSG + hour() + ":" + minute() + ":" + second() + " " + B;
     if (initLogFileOk) {
       //writeToFile(logOutputData);
     }
   } else {
-    TextAreaMain.appendText(A + MSG + B);
+    //TextAreaMain.appendText(A + MSG + B);
     //textAreaMain.setCaretPosition(textAreaMain.getDocument().getLength());
     logOutputData = A + MSG + B;
     //print(logOutputData);
@@ -43,6 +43,12 @@ public void TextAreaMainMsg(String A, String MSG, String B) {
       //writeToFile(logOutputData);
     }
   }
+}
+
+//Function finds substring in a string and returns the position
+public int findTextInString(String inputString, String txtToFind, int fromIndex) {
+  int position = inputString.indexOf(txtToFind, fromIndex); //get position of txtToFind in inputString
+  return position; //return position of txtToFind in inputString
 }
 
 //generate default random file name
@@ -117,16 +123,16 @@ public void getOS() {
 // }
 //convert PImage to BufferedImage
 BufferedImage convertToBufferedImage(PImage imgToConvert) {
- imgToConvert.loadPixels(); //load pixel data
- BufferedImage convertedImg = new BufferedImage(imgToConvert.width, imgToConvert.height, BufferedImage.TYPE_INT_ARGB);
+  imgToConvert.loadPixels(); //load pixel data
+  BufferedImage convertedImg = new BufferedImage(imgToConvert.width, imgToConvert.height, BufferedImage.TYPE_INT_ARGB);
 
- for (int y = 0; y < imgToConvert.height; y++) {
-   for (int x = 0; x < imgToConvert.width; x++) {
-     int loc = x + y * imgToConvert.width;
-     convertedImg.setRGB(x, y, imgToConvert.pixels[loc]); // Copy pixel data
-   }
- }
- return convertedImg;
+  for (int y = 0; y < imgToConvert.height; y++) {
+    for (int x = 0; x < imgToConvert.width; x++) {
+      int loc = x + y * imgToConvert.width;
+      convertedImg.setRGB(x, y, imgToConvert.pixels[loc]); // Copy pixel data
+    }
+  }
+  return convertedImg;
 }
 // print to system console
 public void systemPrintln(String msg) {
@@ -148,7 +154,7 @@ public void setFont(String fontName, float fontSize) {
     }
 
     // Load the font
-     Font systemFont = Font.loadFont(new FileInputStream(fontFile), fontSize); // Set style and size
+    Font systemFont = Font.loadFont(new FileInputStream(fontFile), fontSize); // Set style and size
 
     // Apply font to textAreaMain and textFieldMain
     TextAreaMain.setFont(systemFont);
@@ -171,6 +177,7 @@ public void setup() {
   canvas = (Canvas)surface.getNative(); //get native canvas
   root = (StackPane)canvas.getParent(); //get parent of canvas
   pane = addControls(); //add controls to pane
+
 
 
 
@@ -242,9 +249,9 @@ public void setup() {
   //   delay(1);
   // }
 
-   getOS();          //get operating system
-   loadTable();    //load preferences table
-   getTableData(); //get preferences table data
+  getOS();          //get operating system
+  loadTable();    //load preferences table
+  getTableData(); //get preferences table data
   // searchForPorts(); //search for available serial ports
   //set startup message length based on selected font size
   if (selectedFontSize == 12) {
@@ -258,7 +265,6 @@ public void setup() {
   }
   TextAreaMainMsg("\n", "Enter -h for help", ""); //print help message
   systemPrintln("Startup complete" + " @ " + millis());
-
 } // END setup
 
 // // Processing loop function

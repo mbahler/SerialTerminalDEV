@@ -339,23 +339,22 @@ Pane addControls() {
   pane = new Pane(); //create pane for main window controls
   root.getChildren().add(pane);
   addMainUI(); //add main window UI controls to pane
- 
+
   return pane;
 }
 
 //UI controls in main window top row HBox
 private void initTopHBoxUi() {
-    /*====== Connect Button ======*/
+  /*====== Connect Button ======*/
   ButtonConnect = new Button("Connect");
   ButtonConnect.setPrefSize(width - 251, 25);
-  ButtonConnect.setPadding(new Insets(0,0,0,0));
+  ButtonConnect.setPadding(new Insets(0, 0, 0, 0));
   ButtonConnect.setFont(Font.font("Oxygen", 14));
   //END Connect Button
 
   /*====== Clear Button ======*/
   ButtonClear = new Button("Clear");
   ButtonClear.setPrefSize(75, 25);
-
   //add action listener for ButtonClear clears TextAreaMain
   ButtonClear.setOnAction(event -> {
     try {
@@ -378,6 +377,10 @@ private void initTopHBoxUi() {
   ButtonSettings = new Button("Settings");
   ButtonSettings.setPrefSize(75, 25);
   ButtonSettings.setOnAction(event -> {
+    String txtToFind = TextFieldMain.getText();
+    int position = findTextInString(TextAreaMain.getText(), txtToFind, indexFrom);
+    TextAreaMain.selectRange(position, position + txtToFind.length());
+    indexFrom = position+txtToFind.length();
   }
   );
   //END Settings Button
@@ -390,13 +393,13 @@ private void initTopHBoxUi() {
 
 private void initTextAreaMain() {
   /*====== Main Window Terminal Text Area ======*/
-  TextAreaMain = new TextArea();
+  TextAreaMain = new TextArea("qwreqtextryhojhdvohggfnbirehapttextju40836y584ythkldfbntextniey5t0q3tex49t8iregkjvmsdfvbotextp90q473qt94upojgrbfn8etext0rq5y9u3jotextrghnpbf09uetnektbsf");
   TextAreaMain.setLayoutX(wndPD);
   TextAreaMain.setLayoutY(wndPD*2 + ButtonConnect.getPrefHeight());
   TextAreaMain.setPrefSize(width - wndPD*2, height - 75);
   TextAreaMain.setEditable(false);
+  TextAreaMain.setStyle("-fx-highlight-fill: yellow; -fx-highlight-text-fill: black;"); //set highlight color for search function
   //END Main Window Terminal Text Area
-
 }
 
 //UI controls in main window bottom row HBox
@@ -433,6 +436,5 @@ private void addMainUI() {
   mainUiVBox.setSpacing(wndPD);
   mainUiVBox.getChildren().addAll(topUiHBox, TextAreaMain, bottomUiHBox);
   pane.getChildren().add(mainUiVBox);
-
 }
 

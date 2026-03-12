@@ -13,6 +13,8 @@ int comboBoxPortSelectedIndex = 0;
 int tmr1_lastMillis = 0; //tmr1 last millis reading
 int prevCommandsLimit = 10; //limit of previous entered commands stored
 int prevCommandsIndex = 0; //count of up key presses for previous command retrieval
+  int indexFrom = 0;
+
 
 char selectedParity = 'N'; //serial port parity 'N' for none, 'E' for even, 'O' for odd, 'M' for mark, 'S' for space ('N' is the default)
 
@@ -134,7 +136,25 @@ VBox mainUiVBox; //VBox for all main UI controls
 //Highlighter hilit;  //highlighter for textAreaMain search function
 //Highlighter.HighlightPainter painter;   //painter for textAreaMain search function
 //JFXHighlighter highlighter;  //highlighter for textAreaMain search function
-////Controls for settings window
+
+/*======Settings Window Controls======*/
+Pane PaneSettings;   //settings window pane
+Stage StageSettings; //settings window stage
+/*======Settings Window "Port Configuration" Controls======*/
+Label LabelPortConfig;   // settings window "Port Configuration" label
+Label LabelPort;         // settings window "Port" comboBox label
+Label LabelBaudRate;     // settings window "Baud Rate" comboBox label
+Label LabelPortParity;   // settings window "Parity" comboBox label
+Label LabelPortDataBits; // settings window "Data Bits" comboBox label
+Label LabelPortStopBits; // settings window "Stop Bits" comboBox label
+
+/*======Settings Window "Data Configuration" Controls======*/
+Label LabelDataConfig; //settings window "Data Configuration" label
+/*======Settings Window "Log Configuration" Controls======*/
+Label LabelLogConfig; //settings window "Log Configuration" label
+
+//END Settings Window Controls
+
 //JFrame frameSettings; //settings window frame
 //JLabel labelPortConfig; //settings window Port Configuration label
 //JLabel labelPort; //settings window Port label
@@ -161,3 +181,4 @@ VBox mainUiVBox; //VBox for all main UI controls
 //SpringLayout layoutSettings = new SpringLayout(); //settings window layout manager
 
 BufferedImage bufferedIcon; //buffered image for icon
+
