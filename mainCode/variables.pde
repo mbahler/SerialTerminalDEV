@@ -36,7 +36,7 @@ boolean advancedOptions = false;                                                
 String versionInfo = "SerialTerminal 2.3.0";
 String selectedPort = null;                                                                                                                            // Name of selected COM port
 String[] baudRateList = {"4800", "9600", "38400", "57600", "115200"};
-String selectedBaudRate = baudRateList[2];
+String selectedBaudRate = baudRateList[1];
 String[] availableCOMs;                                                                                                                                // List of available COM ports
 String serialInputData = "0";
 String textFieldFileDirInput;                                                                                                                          // Input from fileDirectoryTextField
