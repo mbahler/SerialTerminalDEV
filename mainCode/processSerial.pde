@@ -95,9 +95,13 @@ public void disconnectPort() {
 
 //write data to serial port
 public void writeToPort(String i) {
+  println("start"); //debug
   try {
     if (i.length() > 0) {
+      println("start1"); //debug
+      //TODO COMPort.write is very slow when sending a very large string of text. Change it to write one char at a time
       COMPort.write(i);
+      println("start2");//debug
       textAreaMainMsg("\n", i, "\n");
     } else {
       COMPort.write('\n');
@@ -118,6 +122,7 @@ public void writeToPort(String i) {
 
 //read data from serial port
 public void serialEvent(Serial p) {
+  println("start4");
   serialInputData = p.readString();
   textAreaMainMsg("", serialInputData, "");
   textAreaMain.setCaretPosition(textAreaMain.getDocument().getLength()); //set textAreaMain to autoscroll
