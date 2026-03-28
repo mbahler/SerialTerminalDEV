@@ -80,19 +80,21 @@ void drawTextFieldMain() {
       prevCommandsIndex = 0;  //reset up key press count on enter keyPress
       commandFound = false; //reset commandFound variable
 
-      // check if entered data is a valid command
-      for (int i = 0; i < validCommands.length; i ++) {
-        if (textFieldMain.getText().equals(validCommands[i])) {
-          commandFound = true;
-          enteredCommand = textFieldMain.getText(); //update enteredCommand variable
-          processCommands();                        //process entered command
+      for (int i = 0; i < validCommands.length; i ++) {                            // check if entered data is a valid command                             
+        if (textFieldMain.getText().equals(validCommands[i]) && !connectedToCOM) { // if entered text is equal to a command and serialPort is not connected
+          commandFound = true;                                                     // set commandFound to to true                                          
+          enteredCommand = textFieldMain.getText();                                // update enteredCommand variable
         }
       }
-      // if entered data is not a command, send to serial port
-      if (!commandFound && !textFieldMain.getText().startsWith("-")) {
-        writeToPort(textFieldMain.getText());     //send entered text to serial port write process
-      } else if (!commandFound && textFieldMain.getText().startsWith("-")) {
-        textAreaMainMsg("\n", "Invalid command entered. Type -h for help.", ""); //invalid command message
+
+      if (commandFound && !connectedToCOM) {                                     // if entered data is a command and serialPort is not connected    
+        processCommands();                                                       // process entered command                                         
+      } else if (!commandFound && !connectedToCOM) {                             // if entered data is not a command and serialPort is not connected
+        textAreaMainMsg("\n", "Invalid command entered. Type -h for help.", ""); // print invalid command message
+      }
+
+      if (connectedToCOM) {                   // if connected to com send to serial port       
+        writeToPort(textFieldMain.getText()); // send entered text to serial port write process
       }
 
       previousEnteredCommands.append(textFieldMain.getText()); //store entered command
@@ -335,3 +337,4 @@ void drawButtonLogPauseResume() {
   systemPrintln("EDT buttonLogPauseResume = " + javax.swing.SwingUtilities.isEventDispatchThread() + " @ " + millis());
   buttonLogPauseResume.repaint();
 }
+
