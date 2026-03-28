@@ -32,7 +32,7 @@ void drawTextAreaMain() {
   textAreaMainScrollPane = new JScrollPane(textAreaMain);
   textAreaMainScrollPane.setPreferredSize(new Dimension(width - 10, height - 75));
   textAreaMain.setEditable(false);
-  textAreaMain.setLineWrap(true);
+  //textAreaMain.setLineWrap(true);
   panelMain.add(textAreaMainScrollPane);
   systemPrintln("EDT txtAreaMain = " + javax.swing.SwingUtilities.isEventDispatchThread() + " @ " + millis());
   textAreaMain.repaint();
@@ -80,20 +80,20 @@ void drawTextFieldMain() {
       prevCommandsIndex = 0;  //reset up key press count on enter keyPress
       commandFound = false; //reset commandFound variable
 
-      for (int i = 0; i < validCommands.length; i ++) {                            // check if entered data is a valid command                             
+      for (int i = 0; i < validCommands.length; i ++) {                            // check if entered data is a valid command
         if (textFieldMain.getText().equals(validCommands[i]) && !connectedToCOM) { // if entered text is equal to a command and serialPort is not connected
-          commandFound = true;                                                     // set commandFound to to true                                          
+          commandFound = true;                                                     // set commandFound to to true
           enteredCommand = textFieldMain.getText();                                // update enteredCommand variable
         }
       }
 
-      if (commandFound && !connectedToCOM) {                                     // if entered data is a command and serialPort is not connected    
-        processCommands();                                                       // process entered command                                         
+      if (commandFound && !connectedToCOM) {                                     // if entered data is a command and serialPort is not connected
+        processCommands();                                                       // process entered command
       } else if (!commandFound && !connectedToCOM) {                             // if entered data is not a command and serialPort is not connected
         textAreaMainMsg("\n", "Invalid command entered. Type -h for help.", ""); // print invalid command message
       }
 
-      if (connectedToCOM) {                   // if connected to com send to serial port       
+      if (connectedToCOM) {                   // if connected to com send to serial port
         writeToPort(textFieldMain.getText()); // send entered text to serial port write process
       }
 
@@ -103,8 +103,6 @@ void drawTextFieldMain() {
       if (previousEnteredCommands.size() > prevCommandsLimit) {
         previousEnteredCommands.remove(0); //remove oldest entry
       }
-      systemPrintln(previousEnteredCommands.toString()); //print previous commands size and content to console
-
       textFieldMain.setText("");                //clear text field after enter pressed
       systemPrintln("textFieldMain keyPressed Enter" + " @ " + millis());
     }
@@ -128,7 +126,7 @@ void drawTextFieldMain() {
         systemPrintln("Up arrow key pressed");
       }
 
-      // //handle down arrow keyPress
+      //handle down arrow keyPress
       if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
         if (prevCommandsIndex > 1) {
           prevCommandsIndex--; // decrement previous commands index
@@ -337,4 +335,3 @@ void drawButtonLogPauseResume() {
   systemPrintln("EDT buttonLogPauseResume = " + javax.swing.SwingUtilities.isEventDispatchThread() + " @ " + millis());
   buttonLogPauseResume.repaint();
 }
-
