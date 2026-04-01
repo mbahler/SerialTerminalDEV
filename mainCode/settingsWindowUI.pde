@@ -476,7 +476,7 @@ public void drawOkCancelButtons() {
 
     //action performed event handler
     public void actionPerformed(ActionEvent actionEvent) {
-      if (connectedToCOM == false && portsFound == true && availableCOMs.length > 0) { //only allow to save settings if not currently connected to COM port and there are available COM ports
+      if (connectedToCOM == false && portsFound == true) { //only allow to save settings if not currently connected to COM port and there are available COM ports
         selectedPort = comboBoxPort.getSelectedItem().toString();
         selectedBaudRate = comboBoxBaudRate.getSelectedItem().toString();
         currBaudRateModel = newBaudRateModel;         // set currBaudRateModel to newBaudRateModel
@@ -556,10 +556,13 @@ public void drawOkCancelButtons() {
       comboBoxPort.setSelectedItem(selectedPort);                   // reset comboBoxPort to selectedPort
       comboBoxBaudRate.setModel(currBaudRateModel);                 // set comboBoxBaudRate model to currBaudRateModel
       comboBoxBaudRate.setSelectedItem(selectedBaudRate);           // reset comboBoxBaudRate to selectedBaudRate
-      comboBoxPortParity.setSelectedItem(selectedParityString);     // reset comboBoxPortParity to selectedParityString
-      comboBoxPortDataBits.setSelectedItem(selectedDataBitsString); // reset comboBoxPortDataBits to selectedDataBitsString
-      comboBoxPortStopBits.setSelectedItem(selectedStopBitsString); // reset comboBoxPortStopBits to selectedStopBitsString
       checkBoxTimeStamp.setSelected(showTimeStamp);                 // reset checkBoxTimeStamp to tStampIsChecked
+
+      if (advancedOptions == true) {
+        comboBoxPortParity.setSelectedItem(selectedParityString);     // reset comboBoxPortParity to selectedParityString
+        comboBoxPortDataBits.setSelectedItem(selectedDataBitsString); // reset comboBoxPortDataBits to selectedDataBitsString
+        comboBoxPortStopBits.setSelectedItem(selectedStopBitsString); // reset comboBoxPortStopBits to selectedStopBitsString
+      }
       frameMainWindow.setEnabled(true);                             // disable main window when settings window is open
       dialogSettingsMain.setVisible(false);                         // hide settings window
       systemPrintln("buttonCancel clicked" + " @ " + millis());
@@ -567,3 +570,4 @@ public void drawOkCancelButtons() {
   }
   );
 }
+
