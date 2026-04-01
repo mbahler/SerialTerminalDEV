@@ -476,33 +476,32 @@ public void drawOkCancelButtons() {
 
     //action performed event handler
     public void actionPerformed(ActionEvent actionEvent) {
-      if (connectedToCOM == false && portsFound == true) {
+      if (connectedToCOM == false && portsFound == true && availableCOMs.length > 0) { //only allow to save settings if not currently connected to COM port and there are available COM ports
         selectedPort = comboBoxPort.getSelectedItem().toString();
         selectedBaudRate = comboBoxBaudRate.getSelectedItem().toString();
         currBaudRateModel = newBaudRateModel;         // set currBaudRateModel to newBaudRateModel
         comboBoxBaudRate.setModel(currBaudRateModel); // set comboBoxBaudRate model to currBaudRateModel
-        switch (comboBoxPortParity.getSelectedItem().toString()) {
-        case "None":
-          selectedParity = 'N';
-          break;
-        case "Even":
-          selectedParity = 'E';
-          break;
-        case "Odd":
-          selectedParity = 'O';
-          break;
-        case "Mark":
-          selectedParity = 'M';
-          break;
-        case "Space":
-          selectedParity = 'S';
-          break;
-        default:
-          selectedParity = 'N';
-          break;
-        }
-
         if (advancedOptions == true) {
+          switch (comboBoxPortParity.getSelectedItem().toString()) {
+          case "None":
+            selectedParity = 'N';
+            break;
+          case "Even":
+            selectedParity = 'E';
+            break;
+          case "Odd":
+            selectedParity = 'O';
+            break;
+          case "Mark":
+            selectedParity = 'M';
+            break;
+          case "Space":
+            selectedParity = 'S';
+            break;
+          default:
+            selectedParity = 'N';
+            break;
+          }
           selectedDataBits = int(comboBoxPortDataBits.getSelectedItem().toString());
           selectedStopBits = float(comboBoxPortStopBits.getSelectedItem().toString());
           comboBoxPortSelectedIndex = comboBoxPort.getSelectedIndex();
@@ -516,18 +515,20 @@ public void drawOkCancelButtons() {
         setTableData("basic");
         frameMainWindow.setEnabled(true);     // disable main window when settings window is open
         dialogSettingsMain.setVisible(false); // hide settings window
-      } else {
-        comboBoxPort.setSelectedItem(selectedPort);         // reset comboBoxPort to selectedPort
-        comboBoxBaudRate.setSelectedItem(selectedBaudRate); // reset comboBoxBaudRate to selectedBaudRate
-        comboBoxBaudRate.setModel(currBaudRateModel);       // set comboBoxBaudRate model to currBaudRateModel
-        if (advancedOptions == true) {
-          comboBoxPortParity.setSelectedItem(selectedParityString);     // reset comboBoxPortParity to selectedParityString
-          comboBoxPortDataBits.setSelectedItem(selectedDataBitsString); // reset comboBoxPortDataBits to selectedDataBitsString
-          comboBoxPortStopBits.setSelectedItem(selectedStopBitsString); // reset comboBoxPortStopBits to selectedStopBitsString
-        }
-        frameMainWindow.setEnabled(true);     // disable main window when settings window is open
-        dialogSettingsMain.setVisible(false); // hide settings window
-      }
+      } 
+      // HACK: commented this out to prevent error when comboboxes are empty
+      // else {
+      //   //comboBoxPort.setSelectedItem(selectedPort);         // reset comboBoxPort to selectedPort
+      //   //comboBoxBaudRate.setSelectedItem(selectedBaudRate); // reset comboBoxBaudRate to selectedBaudRate
+      //   //comboBoxBaudRate.setModel(currBaudRateModel);       // set comboBoxBaudRate model to currBaudRateModel
+      //   if (advancedOptions == true) {
+      //     //comboBoxPortParity.setSelectedItem(selectedParityString);     // reset comboBoxPortParity to selectedParityString
+      //     //comboBoxPortDataBits.setSelectedItem(selectedDataBitsString); // reset comboBoxPortDataBits to selectedDataBitsString
+      //     //comboBoxPortStopBits.setSelectedItem(selectedStopBitsString); // reset comboBoxPortStopBits to selectedStopBitsString
+      //   }
+      //   frameMainWindow.setEnabled(true);     // disable main window when settings window is open
+      //   dialogSettingsMain.setVisible(false); // hide settings window
+      // }
 
       if (checkBoxTimeStamp.isSelected() == true) {
         showTimeStamp = true;
