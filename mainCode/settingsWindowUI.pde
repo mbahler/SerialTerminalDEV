@@ -515,20 +515,18 @@ public void drawOkCancelButtons() {
         setTableData("basic");
         frameMainWindow.setEnabled(true);     // disable main window when settings window is open
         dialogSettingsMain.setVisible(false); // hide settings window
-      } 
-      // HACK: commented this out to prevent error when comboboxes are empty
-      // else {
-      //   //comboBoxPort.setSelectedItem(selectedPort);         // reset comboBoxPort to selectedPort
-      //   //comboBoxBaudRate.setSelectedItem(selectedBaudRate); // reset comboBoxBaudRate to selectedBaudRate
-      //   //comboBoxBaudRate.setModel(currBaudRateModel);       // set comboBoxBaudRate model to currBaudRateModel
-      //   if (advancedOptions == true) {
-      //     //comboBoxPortParity.setSelectedItem(selectedParityString);     // reset comboBoxPortParity to selectedParityString
-      //     //comboBoxPortDataBits.setSelectedItem(selectedDataBitsString); // reset comboBoxPortDataBits to selectedDataBitsString
-      //     //comboBoxPortStopBits.setSelectedItem(selectedStopBitsString); // reset comboBoxPortStopBits to selectedStopBitsString
-      //   }
-      //   frameMainWindow.setEnabled(true);     // disable main window when settings window is open
-      //   dialogSettingsMain.setVisible(false); // hide settings window
-      // }
+      } else {
+        comboBoxPort.setSelectedItem(selectedPort);         // reset comboBoxPort to selectedPort
+        comboBoxBaudRate.setSelectedItem(selectedBaudRate); // reset comboBoxBaudRate to selectedBaudRate
+        comboBoxBaudRate.setModel(currBaudRateModel);       // set comboBoxBaudRate model to currBaudRateModel
+        if (advancedOptions == true) {
+          comboBoxPortParity.setSelectedItem(selectedParityString);     // reset comboBoxPortParity to selectedParityString
+          comboBoxPortDataBits.setSelectedItem(selectedDataBitsString); // reset comboBoxPortDataBits to selectedDataBitsString
+          comboBoxPortStopBits.setSelectedItem(selectedStopBitsString); // reset comboBoxPortStopBits to selectedStopBitsString
+        }
+        frameMainWindow.setEnabled(true);     // disable main window when settings window is open
+        dialogSettingsMain.setVisible(false); // hide settings window
+      }
 
       if (checkBoxTimeStamp.isSelected() == true) {
         showTimeStamp = true;
