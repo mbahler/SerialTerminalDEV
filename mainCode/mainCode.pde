@@ -77,6 +77,8 @@ public void textAreaMainMsg(String A, String MSG, String B) {
     }
   }
 }
+//test for commit
+
 
 //generate default random file name
 public String genFileName(String randomFileName) {
