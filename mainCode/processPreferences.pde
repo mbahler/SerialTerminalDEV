@@ -11,8 +11,8 @@ public void getTableData() {
   selectedFontSize = preferenceTable.getInt(0, "fontSize");
   String tempBaudRates = preferenceTable.getString(0, "baudRateList").replace("]", "").replace("[", "").replace(" ", "").trim();
   baudRateList = tempBaudRates.split(",");
+  theme = preferenceTable.getString(0, "theme");
   currBaudRateModel = new DefaultComboBoxModel(baudRateList);
-  setFont(selectedFont, selectedFontSize);
   systemPrintln("getTableData complete @ " + millis(), "debug");
 }
 
@@ -25,6 +25,7 @@ public void setTableData(String mode) {
   } else if (mode.equals("basic")) {
     preferenceTable.setString(0, "baudRateList", java.util.Arrays.toString(baudRateList)); //save baud rate list to preferences table
   }
+  preferenceTable.setString(0, "theme", theme);
   saveTable(preferenceTable, "data/preferences.csv");
   systemPrintln("setTableData complete @ " + millis(), "debug");
 }

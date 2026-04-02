@@ -172,26 +172,26 @@ public void setFont(String fontName, float fontSize) {
 // set software theme
 public void setTheme(String theme) {
   try {
-    if (theme.equals("Light")) {
+    if (theme.equals("light")) {
       UIManager.setLookAndFeel(new FlatLightLaf());              // set theme to light
       FlatLightLaf.setup();
       FlatLaf.updateUI();
       systemPrintln("setTheme complete @ " + millis(), "debug"); // print debug statement
-    } else if (theme.equals("Dark")) {
+    } else if (theme.equals("dark")) {
       UIManager.setLookAndFeel(new FlatDarkLaf());               // set theme to dark
       FlatDarkLaf.setup();
       FlatLaf.updateUI();
       systemPrintln("setTheme complete @ " + millis(), "debug"); // print debug statement
-      } else if (theme.equals("IntelliJ")) {
-        UIManager.setLookAndFeel(new FlatIntelliJLaf());               // set theme to dark
-        FlatIntelliJLaf.setup();
-        FlatLaf.updateUI();
-        systemPrintln("setTheme complete @ " + millis(), "debug"); // print debug statement
-      } else if (theme.equals("Darcula")) {
-        UIManager.setLookAndFeel(new FlatDarculaLaf());               // set theme to dark
-        FlatDarculaLaf.setup();
-        FlatLaf.updateUI();
-        systemPrintln("setTheme complete @ " + millis(), "debug"); // print debug statement
+    } else if (theme.equals("intellij")) {
+      UIManager.setLookAndFeel(new FlatIntelliJLaf());               // set theme to dark
+      FlatIntelliJLaf.setup();
+      FlatLaf.updateUI();
+      systemPrintln("setTheme complete @ " + millis(), "debug"); // print debug statement
+    } else if (theme.equals("darcula")) {
+      UIManager.setLookAndFeel(new FlatDarculaLaf());               // set theme to dark
+      FlatDarculaLaf.setup();
+      FlatLaf.updateUI();
+      systemPrintln("setTheme complete @ " + millis(), "debug"); // print debug statement
     } else {
       systemPrintln("Theme not recognized, defaulting to light theme @ " + millis(), "debug"); // print debug statement
       UIManager.setLookAndFeel(new FlatLightLaf());                                            // default theme to light
@@ -206,7 +206,10 @@ public void setTheme(String theme) {
 
 // software main setup function
 public void setupMain() {
-  setTheme("Light");                                           // set software theme
+  OS = getOS();     // get operating system             
+  loadTable();      // load preferences table           
+  getTableData();   // get preferences table data    
+  setTheme(theme);  // set software theme               
   iconMain = loadImage("icon.png");                            // import software icon
   iconRefresh = loadImage("refresh.png");                      // import refresh button icon
   iconEditBaud = loadImage("editBaud.png");                    // import edit baud rate button icon
@@ -236,7 +239,7 @@ public void setupMain() {
         textAreaMain.repaint();
         textAreaMain.updateUI();
         textAreaMain.setCaretPosition(textAreaMain.getDocument().getLength());
-        textAreaMainScrollPane.setPreferredSize(new Dimension(width - 10, height - 75));
+        textAreaMainScrollPane.setPreferredSize(new Dimension(width - 10, height - 106));
         textAreaMainScrollPane.repaint();
 
         textFieldMain.setPreferredSize(new Dimension(width - 215, 30));
@@ -279,12 +282,10 @@ public void setupMain() {
   //wait for main UI to initialize before continuing
   while (mainUiInit == false) {
     delay(1);
-  }
-  OS = getOS();          //get operating system
-  loadTable();    //load preferences table
-  getTableData(); //get preferences table data
-  searchForPorts(); //search for available serial ports
-  initSearch();     //initialize textAreaMain searching
+  }   
+  setFont(selectedFont, selectedFontSize);
+  searchForPorts(); // search for available serial ports
+  initSearch();     // initialize textAreaMain searching
   //set startup message length based on selected font size
   if (selectedFontSize == 12) {
     textAreaMainMsg("", " -------------------------------------" + versionInfo +  "-------------------------------------", "");
