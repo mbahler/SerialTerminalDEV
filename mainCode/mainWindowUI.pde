@@ -29,7 +29,7 @@ void drawPanelMain() {
 void drawTextAreaMain() {
   textAreaMain = new JTextArea();
   textAreaMainScrollPane = new JScrollPane(textAreaMain);
-  textAreaMainScrollPane.setPreferredSize(new Dimension(width - 10, height - 75));
+  textAreaMainScrollPane.setPreferredSize(new Dimension(width - 10, height - 110));
   textAreaMain.setEditable(false);
   //textAreaMain.setLineWrap(true);
   panelMain.add(textAreaMainScrollPane);

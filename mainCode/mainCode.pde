@@ -206,10 +206,11 @@ public void setTheme(String theme) {
 
 // software main setup function
 public void setupMain() {
-  OS = getOS();     // get operating system             
-  loadTable();      // load preferences table           
-  getTableData();   // get preferences table data    
-  setTheme(theme);  // set software theme               
+  OS = getOS();     // get operating system
+  loadTable();      // load preferences table
+  getTableData();   // get preferences table data
+
+  setTheme(theme);  // set software theme
   iconMain = loadImage("icon.png");                            // import software icon
   iconRefresh = loadImage("refresh.png");                      // import refresh button icon
   iconEditBaud = loadImage("editBaud.png");                    // import edit baud rate button icon
@@ -239,7 +240,7 @@ public void setupMain() {
         textAreaMain.repaint();
         textAreaMain.updateUI();
         textAreaMain.setCaretPosition(textAreaMain.getDocument().getLength());
-        textAreaMainScrollPane.setPreferredSize(new Dimension(width - 10, height - 75));
+        textAreaMainScrollPane.setPreferredSize(new Dimension(width - 10, height - 110));
         textAreaMainScrollPane.repaint();
 
         textFieldMain.setPreferredSize(new Dimension(width - 215, 30));
@@ -282,7 +283,7 @@ public void setupMain() {
   //wait for main UI to initialize before continuing
   while (mainUiInit == false) {
     delay(1);
-  }   
+  }
   setFont(selectedFont, selectedFontSize);
   searchForPorts(); // search for available serial ports
   initSearch();     // initialize textAreaMain searching
@@ -314,6 +315,7 @@ public void draw() {
 
 //Processing settings function
 public void settings() {
+  JFrame.setDefaultLookAndFeelDecorated(true); // set JFrame DefaultLookAndFeelDecorated to true for custom window decorations
+  JDialog.setDefaultLookAndFeelDecorated(true);// set JDialog DefaultLookAndFeelDecorated to true for custom window decorations
   size(wndMinW, wndMinH); // set main window size
 }
-

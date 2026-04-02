@@ -110,6 +110,7 @@ int intBaudRate = int(selectedBaudRate);            // integer value of selected
 processing.serial.Serial COMPort = null;            // create object of Serial class
 Table preferenceTable;                              // preferences table
 
+
 //Controls for main window
 javax.swing.JFrame frameMainWindow; //create instance of JFrame
 java.awt.Canvas canvasMainWindow;   //create instance of Canvas
