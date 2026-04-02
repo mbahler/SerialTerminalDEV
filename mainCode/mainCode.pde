@@ -239,10 +239,10 @@ public void setupMain() {
         textAreaMain.repaint();
         textAreaMain.updateUI();
         textAreaMain.setCaretPosition(textAreaMain.getDocument().getLength());
-        if (OS.equals("linux")) {
+        if (OS.equals("linux")) { // linux misplaces the ui components. this adjusts according to the OS.
           textAreaMainScrollPane.setPreferredSize(new Dimension(width - 10, height - 110));
         } else {
-          textAreaMainScrollPane.setPreferredSize(new Dimension(width - 10, height - 75));
+          textAreaMainScrollPane.setPreferredSize(new Dimension(width - 10, height - 105));
         }
         textAreaMainScrollPane.repaint();
 

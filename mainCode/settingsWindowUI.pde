@@ -1,7 +1,11 @@
 //draw main ui for settings window
 void settingsUI() {
   dialogSettingsMain = new JDialog(frameMainWindow, "Settings");
-  dialogSettingsMain.setSize(500, 350);
+  if (OS.equals("linux")) { // linux misplaces the ui components. this adjusts according to the OS.
+    dialogSettingsMain.setSize(486, 343);
+  } else {
+    dialogSettingsMain.setSize(500, 350);
+  }
   dialogSettingsMain.setResizable(false);
   dialogSettingsMain.setIconImage(bufferedIconMain);
   dialogSettingsMain.setLocationRelativeTo(frameMainWindow);
@@ -466,7 +470,11 @@ public void drawOkCancelButtons() {
   buttonOk.setPreferredSize(new Dimension(60, 20));
   buttonOk.setMargin(new Insets(0, 0, 0, 0));
   buttonOk.setFocusPainted(false);
-  layoutSettings.putConstraint(SpringLayout.WEST, buttonOk, 399, SpringLayout.EAST, dialogSettingsMain);
+  if (OS.equals("linux")) { // linux misplaces the ui components. this adjusts according to the OS.
+    layoutSettings.putConstraint(SpringLayout.WEST, buttonOk, 413, SpringLayout.EAST, dialogSettingsMain);
+  } else {
+    layoutSettings.putConstraint(SpringLayout.WEST, buttonOk, 399, SpringLayout.EAST, dialogSettingsMain);
+  }
   layoutSettings.putConstraint(SpringLayout.SOUTH, buttonOk, 262, SpringLayout.SOUTH, dialogSettingsMain);
   dialogSettingsMain.add(buttonOk);
 
@@ -583,4 +591,3 @@ public void drawOkCancelButtons() {
   }
   );
 }
-
