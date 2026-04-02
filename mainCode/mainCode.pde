@@ -239,7 +239,7 @@ public void setupMain() {
         textAreaMain.repaint();
         textAreaMain.updateUI();
         textAreaMain.setCaretPosition(textAreaMain.getDocument().getLength());
-        textAreaMainScrollPane.setPreferredSize(new Dimension(width - 10, height - 106));
+        textAreaMainScrollPane.setPreferredSize(new Dimension(width - 10, height - 75));
         textAreaMainScrollPane.repaint();
 
         textFieldMain.setPreferredSize(new Dimension(width - 215, 30));
