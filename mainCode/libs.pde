@@ -1,23 +1,25 @@
-import processing.serial.Serial;         // import processing Serial
-import com.formdev.flatlaf.FlatLightLaf; // import flatlaf light theme
-import com.formdev.flatlaf.FlatDarkLaf;  // import flatlaf dark theme
-import java.awt.Font;                    // import java Font
-import java.awt.FontFormatException;     // import java FontFormatException
-import java.awt.event.WindowAdapter;     // import java WindowAdapter
-import java.awt.event.WindowEvent;       // import java WindowEvent
-import java.awt.event.ActionListener;    // import java ActionListener
-import java.awt.event.ActionEvent;       // import java ActionEvent
-import java.awt.event.KeyAdapter;        // import java KeyAdapter
-import java.awt.event.KeyEvent;          // import java KeyEvent
-import java.awt.event.ComponentEvent;    // import java ComponentEvent
-import java.awt.event.FocusListener;     // import java FocusListener
-import java.awt.event.FocusEvent;        // import java FocusEvent
-import java.awt.KeyboardFocusManager;    // import java KeyBoardFocusManger
-import java.awt.Dimension;               // import java dimension library
-import java.awt.image.BufferedImage;     // import java buffered image library
-import java.awt.FlowLayout;              // import java FlowLayout
-import java.awt.Color;                   // import java Color
-import java.awt.Insets;                  // import java insets
+import processing.serial.Serial;                   // import processing Serial          
+import com.formdev.flatlaf.FlatLightLaf;           // import flatlaf light theme        
+import com.formdev.flatlaf.FlatDarkLaf;            // import flatlaf dark theme         
+import com.formdev.flatlaf.FlatIntelliJLaf;        // import flatlaf IntelliL theme     
+import com.formdev.flatlaf.FlatDarculaLaf;         // import flatlaf Darcula theme          
+import java.awt.Font;                              // import java Font                  
+import java.awt.FontFormatException;               // import java FontFormatException   
+import java.awt.event.WindowAdapter;               // import java WindowAdapter         
+import java.awt.event.WindowEvent;                 // import java WindowEvent           
+import java.awt.event.ActionListener;              // import java ActionListener        
+import java.awt.event.ActionEvent;                 // import java ActionEvent           
+import java.awt.event.KeyAdapter;                  // import java KeyAdapter            
+import java.awt.event.KeyEvent;                    // import java KeyEvent              
+import java.awt.event.ComponentEvent;              // import java ComponentEvent        
+import java.awt.event.FocusListener;               // import java FocusListener         
+import java.awt.event.FocusEvent;                  // import java FocusEvent            
+import java.awt.KeyboardFocusManager;              // import java KeyBoardFocusManger   
+import java.awt.Dimension;                         // import java dimension library     
+import java.awt.image.BufferedImage;               // import java buffered image library
+import java.awt.FlowLayout;                        // import java FlowLayout            
+import java.awt.Color;                             // import java Color                 
+import java.awt.Insets;                            // import java insets
 
 import javax.swing.JFrame;                          // import javax JFrame
 import javax.swing.JPanel;                          // import javax JPanel

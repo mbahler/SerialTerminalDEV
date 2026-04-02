@@ -5,7 +5,6 @@ public void initDialogBaudEdit() {
   dialogBaudEdit.setAlwaysOnTop(true);
   dialogBaudEdit.setLocationRelativeTo(dialogSettingsMain);
   dialogBaudEdit.setLayout(layoutBaudEdit);
-  dialogBaudEdit.getContentPane().setBackground(Color.WHITE);
   dialogBaudEdit.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
   dialogBaudEdit.addWindowListener(new WindowAdapter() {
     @Override
@@ -19,7 +18,6 @@ public void initDialogBaudEdit() {
   textAreaBaudEdit = new JTextArea(java.util.Arrays.toString(baudRateList).replace(",", "\n").replace("[", "").replace("]", "").replace(" ", "").trim());
   scrollPaneBaudEdit = new JScrollPane(textAreaBaudEdit);
   scrollPaneBaudEdit.setPreferredSize(new Dimension(274, 226));
-  textAreaBaudEdit.setBackground(Color.WHITE);
   textAreaBaudEdit.setLineWrap(true);
   textAreaBaudEdit.setAutoscrolls(true);
 

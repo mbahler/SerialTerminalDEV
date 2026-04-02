@@ -20,7 +20,6 @@ void drawPanelMain() {
   panelMain = new JPanel();
   panelMain.setLocation(0, 0);
   panelMain.setBounds(0, 0, width, height);
-  panelMain.setBackground(Color.WHITE);
   panelMain.setLayout(new FlowLayout());
   frameMainWindow.add(panelMain); //add panel to main frame
   systemPrintln("EDT panelMain = " + javax.swing.SwingUtilities.isEventDispatchThread() + " @ " + millis(), "debug");

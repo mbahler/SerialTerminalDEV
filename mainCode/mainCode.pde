@@ -172,15 +172,31 @@ public void setFont(String fontName, float fontSize) {
 // set software theme
 public void setTheme(String theme) {
   try {
-    if (theme.equals("light")) {
+    if (theme.equals("Light")) {
       UIManager.setLookAndFeel(new FlatLightLaf());              // set theme to light
+      FlatLightLaf.setup();
+      FlatLaf.updateUI();
       systemPrintln("setTheme complete @ " + millis(), "debug"); // print debug statement
-    } else if (theme.equals("dark")) {
+    } else if (theme.equals("Dark")) {
       UIManager.setLookAndFeel(new FlatDarkLaf());               // set theme to dark
+      FlatDarkLaf.setup();
+      FlatLaf.updateUI();
       systemPrintln("setTheme complete @ " + millis(), "debug"); // print debug statement
+      } else if (theme.equals("IntelliJ")) {
+        UIManager.setLookAndFeel(new FlatIntelliJLaf());               // set theme to dark
+        FlatIntelliJLaf.setup();
+        FlatLaf.updateUI();
+        systemPrintln("setTheme complete @ " + millis(), "debug"); // print debug statement
+      } else if (theme.equals("Darcula")) {
+        UIManager.setLookAndFeel(new FlatDarculaLaf());               // set theme to dark
+        FlatDarculaLaf.setup();
+        FlatLaf.updateUI();
+        systemPrintln("setTheme complete @ " + millis(), "debug"); // print debug statement
     } else {
       systemPrintln("Theme not recognized, defaulting to light theme @ " + millis(), "debug"); // print debug statement
       UIManager.setLookAndFeel(new FlatLightLaf());                                            // default theme to light
+      FlatLightLaf.setup();
+      FlatLaf.updateUI();
     }
   }
   catch (UnsupportedLookAndFeelException error) {
@@ -190,7 +206,7 @@ public void setTheme(String theme) {
 
 // software main setup function
 public void setupMain() {
-  setTheme("light");                                           // set software theme
+  setTheme("Light");                                           // set software theme
   iconMain = loadImage("icon.png");                            // import software icon
   iconRefresh = loadImage("refresh.png");                      // import refresh button icon
   iconEditBaud = loadImage("editBaud.png");                    // import edit baud rate button icon

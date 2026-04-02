@@ -5,7 +5,6 @@ void settingsUI() {
   dialogSettingsMain.setResizable(false);
   dialogSettingsMain.setIconImage(bufferedIconMain);
   dialogSettingsMain.setLocationRelativeTo(frameMainWindow);
-  dialogSettingsMain.getContentPane().setBackground(Color.WHITE);
   dialogSettingsMain.setLayout(layoutSettings);
   dialogSettingsMain.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE); //simulate cancel button click on close to reset settings values
   dialogSettingsMain.addWindowListener(new WindowAdapter() {
