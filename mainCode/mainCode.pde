@@ -209,7 +209,6 @@ public void setupMain() {
   OS = getOS();     // get operating system
   loadTable();      // load preferences table
   getTableData();   // get preferences table data
-
   setTheme(theme);  // set software theme
   iconMain = loadImage("icon.png");                            // import software icon
   iconRefresh = loadImage("refresh.png");                      // import refresh button icon
@@ -240,7 +239,11 @@ public void setupMain() {
         textAreaMain.repaint();
         textAreaMain.updateUI();
         textAreaMain.setCaretPosition(textAreaMain.getDocument().getLength());
-        textAreaMainScrollPane.setPreferredSize(new Dimension(width - 10, height - 110));
+        if (OS.equals("linux")) {
+          textAreaMainScrollPane.setPreferredSize(new Dimension(width - 10, height - 110));
+        } else {
+          textAreaMainScrollPane.setPreferredSize(new Dimension(width - 10, height - 75));
+        }
         textAreaMainScrollPane.repaint();
 
         textFieldMain.setPreferredSize(new Dimension(width - 215, 30));
