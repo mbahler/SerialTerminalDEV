@@ -104,6 +104,8 @@ processing.serial.Serial COMPort = null;            // create object of Serial c
 Table preferenceTable;                              // preferences table
 
 //Controls for main window
+javax.swing.JFrame frameMainWindow; //create instance of JFrame
+java.awt.Canvas canvasMainWindow;   //create instance of Canvas
 JPanel panelMain;                     // main window panel
 JTextArea textAreaMain;               // main window text area
 JTextField textFieldMain;             // main window text field
@@ -113,7 +115,7 @@ JButton buttonConnect;                // main window connect button
 JButton buttonClear;                  // main window clear button
 JButton buttonSettings;               // main window settings button
 JButton buttonLogPauseResume;         // main window log pause/resume button
-Highlighter hilit;                    // highlighter for textAreaMain search function
+Highlighter highlighter;                    // highlighter for textAreaMain search function
 Highlighter.HighlightPainter painter; // painter for textAreaMain search function
 BufferedImage bufferedIconMain;       // buffered image for software icon
 PImage iconMain; //software icon

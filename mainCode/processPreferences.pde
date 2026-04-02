@@ -1,7 +1,7 @@
 // function to load the preferences table
 public void loadTable () {
   preferenceTable = loadTable("data/preferences.csv", "header");
-  systemPrintln("loadTable complete @ " + millis());
+  systemPrintln("loadTable complete @ " + millis(), "debug");
 }
 
 // function to get data from preferences table
@@ -13,7 +13,7 @@ public void getTableData() {
   baudRateList = tempBaudRates.split(",");
   currBaudRateModel = new DefaultComboBoxModel(baudRateList);
   setFont(selectedFont, selectedFontSize);
-  systemPrintln("getTableData complete @ " + millis());
+  systemPrintln("getTableData complete @ " + millis(), "debug");
 }
 
 public void setTableData(String mode) {
@@ -26,6 +26,6 @@ public void setTableData(String mode) {
     preferenceTable.setString(0, "baudRateList", java.util.Arrays.toString(baudRateList)); //save baud rate list to preferences table
   }
   saveTable(preferenceTable, "data/preferences.csv");
-  systemPrintln("setTableData complete @ " + millis());
+  systemPrintln("setTableData complete @ " + millis(), "debug");
 }
 
